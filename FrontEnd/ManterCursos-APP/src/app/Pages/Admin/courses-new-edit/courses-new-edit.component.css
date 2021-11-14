@@ -1,0 +1,41 @@
+.noGap{
+  padding: 0;
+  margin: 0;
+}
+
+.row{
+  background-color: rgb(240, 255, 255);
+  border: 2px solid rgb(102, 156, 156);
+}
+
+.col{
+  background-color: rgb(204, 183, 236);
+  border: 2px solid rgb(137, 109, 179);
+}
+
+.backButton{
+  width: 40px;
+  height: auto;
+  background-color: red;
+}
+.backButton:hover{
+  transition: 500ms;
+  background-color: black;
+  cursor: pointer;
+}
+.backButton i{
+  color: white;
+}
+
+#titleCol{
+  transform: translate(-20px,0);
+}
+
+hr{
+  position: relative;
+  width: 100%;
+}
+
+.invalid-feedback{
+  font-size: smaller;
+}

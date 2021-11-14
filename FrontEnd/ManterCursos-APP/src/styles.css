@@ -1,0 +1,32 @@
+/* You can add global styles to this file, and also import other style files */
+* {
+  --darkVoid: rgb(5, 10, 16);
+  --void: rgb(19, 41, 61);
+  --semiVoid: rgb(22, 50, 79);
+
+  --indigo: rgb(24, 67, 90);
+  --secondary: rgb(42, 98, 143);
+  --primary: rgb(62, 146, 204);
+
+  --light: rgb(239, 246, 251);
+
+  --darkGreen: rgb(12, 49, 24);
+  --secondaryGreen: rgb(42, 173, 83);
+  --primaryGreen: rgb(111, 209, 142);
+}
+
+.MainContent{
+  width: 100vw;
+  height: 100vh;
+  background: var(--darkVoid);
+  background: linear-gradient(
+    90deg,
+    var(--darkVoid) 0%,
+    var(--void) 10%,
+    var(--semiVoid) 30%,
+    var(--semiVoid) 70%,
+    var(--void) 90%,
+    var(--darkVoid) 100%
+  );
+}
+

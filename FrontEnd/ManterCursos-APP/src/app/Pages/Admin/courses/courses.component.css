@@ -1,0 +1,55 @@
+.noGap {
+  padding: 0;
+  margin: 0;
+}
+
+#pageHeader {
+  color: white;
+}
+
+#btnNewCourse{
+
+  padding: 8px 12px;
+  background: var(--secondaryGreen);
+  background: radial-gradient(
+    var(--primaryGreen) 0%,
+    var(--primaryGreen) 50%,
+    var(--secondaryGreen) 100%
+  );
+  border-radius: 5px;
+  color: var(--darkGreen);
+  border: 1px solid var(--darkGreen);
+  transition: 180ms;
+}
+#btnNewCourse:hover{
+  color: var(--darkGreen);
+  border: 2px solid var(--light);
+  font-weight: bold;
+  transition: 180ms;
+}
+
+#courseTable thead .dropdown #coursesOptions {
+  font-size: larger;
+  width: auto;
+  height: auto;
+  background-color: var(--secondary);
+  color: var(--light);
+  border: none;
+}
+#courseTable thead .dropdown .dropdown-menu .dropdown-item {
+  cursor: default;
+}
+
+
+#courseTable thead tr th {
+  padding-top: 0;
+  padding-bottom: 0;
+  background-color: var(--secondary);
+  color: var(--light);
+}
+
+#courseTable thead tr th p {
+  margin: 0;
+  padding: 0;
+  font-size: larger;
+}

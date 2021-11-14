@@ -1,0 +1,50 @@
+<div class="MainContent">
+  <div class="container">
+
+    <div class="row justify-content-center align-items-center">
+      <div class="col col-lg-8">
+        <div class="row justify-content-center align-items-center">
+          <div class="col col-auto noGap">
+            <button (click)="resetForm(this.form)" class="btn btn-light backButton" routerLink="/courses-list" type="button">
+              <i class="fas fa-arrow-left"></i>
+            </button>
+          </div>
+
+          <div id="titleCol" class="col col-lg-8 text-center me-auto ms-auto">
+            <p class="display-4 noGap">Novo Curso</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row justify-content-center">
+      <div class="col col-lg-8">
+        <hr />
+      </div>
+    </div>
+
+    <form class="was-validated" method="post" novalidate autocomplete="off" #form="ngForm" (submit)="onSubmit(form)">
+      <div class="row justify-content-center">
+
+        <div class="col col-md-12 col-lg-8">
+          <div class="text-danger"></div>
+
+          <div class="form-group">
+            <label class="control-label">Titulo</label>
+            <input class="form-control" maxlength="50" placeholder="Titulo" name="title" id="txtTitle" value="Titulo"
+              #title="ngModel" [(ngModel)]="CourseService.formData.title" />
+          </div>
+        </div>
+      </div>
+
+      <div class="row justify-content-center align-items-center">
+        <div class="col col-12 col-md-8">
+          <div class="form-group">
+            <button class="btn btn-primary" type="submit" [disabled]="form.invalid">Cadastrar</button>
+          </div>
+        </div>
+      </div>
+    </form>
+
+  </div>
+</div>
