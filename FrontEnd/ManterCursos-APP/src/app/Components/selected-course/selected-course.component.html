@@ -1,0 +1,54 @@
+<div class="modal fade" id="selectedCourseModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+  aria-labelledby="selectedCourseModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="row">
+          <div class="col">
+            <h5 class="modal-title" id="selectedCourseModalLabel">Detalhamento</h5>
+          </div>
+        </div>
+
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+        <div class="row itemLine">
+          <div class="col noGap">
+            <p class="noGap"><span class="fieldLabel">Titulo: </span> {{CourseService.formData.title}}</p>
+          </div>
+        </div>
+
+        <div class="row itemLine">
+          <div class="col noGap">
+            <p class="noGap"><span class="fieldLabel">Data de Início: </span> {{CourseService.formData.startingDate | date: 'dd/MM/yyy'}}</p>
+          </div>
+          <div class="col noGap">
+            <p class="noGap"><span class="fieldLabel">Data de Término: </span> {{CourseService.formData.endingDate | date: 'dd/MM/yyy'}}</p>
+          </div>
+        </div>
+
+        <div class="row itemLine">
+          <div class="col noGap">
+            <p class="noGap"><span class="fieldLabel">Categoria: </span> {{getCategory(CourseService.formData.categoryID).name}}</p>
+          </div>
+          <div class="col noGap">
+            <p class="noGap"><span class="fieldLabel">Alunos por Turma: </span> {{CourseService.formData.studentsPerClass ? CourseService.formData.studentsPerClass : "Não definido"}}</p>
+          </div>
+        </div>
+
+        <div class="row itemLine">
+          <div class="col noGap">
+            <p class="noGap"><span class="fieldLabel">Descrição: </span> {{CourseService.formData.description}}</p>
+          </div>
+        </div>
+        
+
+      </div>
+      <div class="modal-footer">
+        <button (click)="backToList()" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+        <button *ngIf="isOnList" type="button" class="btn btn-success">Editar Curso</button>
+      </div>
+    </div>
+  </div>
+</div>

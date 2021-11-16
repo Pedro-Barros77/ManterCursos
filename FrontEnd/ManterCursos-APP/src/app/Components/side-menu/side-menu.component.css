@@ -1,0 +1,52 @@
+.noGap {
+  padding: 0;
+  margin: 0;
+}
+
+.offcanvas{
+  background-color: var(--darkVoid);
+  border-right: 2px solid var(--darkVoid);
+}
+
+.offcanvas .offcanvas-header{
+  background-color: var(--secondary);
+  color: var(--light);
+  height: 90px;
+}
+
+.offcanvas .offcanvas-header .offcanvas-title{
+  font-weight: 400;
+}
+
+.offcanvas .offcanvas-header .btn-close{
+  font-size: x-large;
+  background: transparent url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='white'%3e%3cpath d='M.293.293a1 1 0 011.414 0L8 6.586 14.293.293a1 1 0 111.414 1.414L9.414 8l6.293 6.293a1 1 0 01-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 01-1.414-1.414L6.586 8 .293 1.707a1 1 0 010-1.414z'/%3e%3c/svg%3e") center/1em auto no-repeat;
+}
+
+.offcanvas .offcanvas-body{
+  overflow: hidden;
+}
+
+
+.offcanvas .offcanvas-body .list-group-item{
+  margin-top: 20px;
+  height: 50px;
+  font-size: large;
+  background-color: var(--semiVoid);
+  color: var(--light);
+  transform-origin: 0% 50%;
+  transition: 180ms;
+  white-space: pre-line;
+}
+
+.offcanvas .offcanvas-body .list-group-item:hover{
+  transform: scale(1.2,1.2);
+  background-color: var(--primary);
+  transition: 180ms;
+}
+
+.offcanvas .offcanvas-body .list-group-item .ico{
+  display: inline-block;
+  padding: 0;
+  margin-right: 15px;
+}

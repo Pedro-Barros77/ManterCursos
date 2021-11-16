@@ -3,29 +3,26 @@
   margin: 0;
 }
 
+.SideMenu{
+  background-color: var(--darkVoid);
+  height: 100vh;
+  border-right: 2px solid var(--darkVoid);
+}
+.SideMenu .sideButtonHeader{
+  height: 90px;
+  background-color: var(--secondary);
+}
+.SideMenu .sideButtonHeader button{
+  margin: 20px 10px;
+}
+
 #pageHeader {
   color: white;
 }
 
 #btnNewCourse{
-
-  padding: 8px 12px;
-  background: var(--secondaryGreen);
-  background: radial-gradient(
-    var(--primaryGreen) 0%,
-    var(--primaryGreen) 50%,
-    var(--secondaryGreen) 100%
-  );
-  border-radius: 5px;
-  color: var(--darkGreen);
-  border: 1px solid var(--darkGreen);
-  transition: 180ms;
-}
-#btnNewCourse:hover{
-  color: var(--darkGreen);
-  border: 2px solid var(--light);
-  font-weight: bold;
-  transition: 180ms;
+  padding: 8px 0;
+  width: 150px;
 }
 
 #courseTable thead .dropdown #coursesOptions {
@@ -48,8 +45,34 @@
   color: var(--light);
 }
 
+#courseTable thead tr .topLeftHeader{
+  width: 45px;
+  border-right: 2px solid var(--void);
+}
+
 #courseTable thead tr th p {
   margin: 0;
   padding: 0;
   font-size: larger;
+}
+
+#courseTable tbody tr{
+  cursor: pointer;
+}
+
+#courseTable tbody tr .leftCell{
+  border-right: 2px solid var(--void);
+}
+
+#courseTable tbody tr td .btnAction{
+  margin: 0;
+  padding: 0;
+  width: 25px;
+  height: 25px;
+  opacity: 0;
+  transition: 150ms;
+}
+#courseTable tbody tr:hover td .btnAction{
+  opacity: 100;
+  transition: 300ms;
 }

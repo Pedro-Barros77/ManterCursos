@@ -1,0 +1,83 @@
+.noGap {
+  padding: 0;
+  margin: 0;
+}
+
+#categoryModal .modal-content {
+  max-height: calc(100vh - 143px);
+  min-height: 300px;
+  overflow-y: auto;
+}
+
+.backButton {
+  width: 40px;
+  height: auto;
+  color: white;
+  background-color: rgb(95, 95, 95);
+}
+.backButton:hover {
+  transition: 500ms;
+  background-color: black;
+  cursor: pointer;
+}
+
+#categoryTable thead tr .topLeftHeader{
+  width: 45px;
+  border-right: 2px solid var(--void);
+}
+
+#categoryTable thead .dropdown #categoriesOptions {
+  font-size: larger;
+  width: auto;
+  height: auto;
+  background-color: var(--secondary);
+  color: var(--light);
+  border: none;
+}
+#categoryTable thead .dropdown .dropdown-menu .dropdown-item {
+  cursor: default;
+}
+
+#categoryTable thead tr th {
+  padding-top: 0;
+  padding-bottom: 0;
+  background-color: var(--secondary);
+  color: var(--light);
+}
+
+#categoryTable thead tr th p {
+  margin: 0;
+  padding: 0;
+  font-size: large;
+}
+
+#categoryTable tbody tr .leftCell{
+  border-right: 2px solid var(--void);
+}
+
+.loadingWindow {
+  background-color: var(--light);
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  border-radius: 15px;
+  box-shadow: 0 0 20px 8px rgba(0, 0, 0, 0.3);
+}
+.loadingWindow .titleContainer {
+  z-index: 1000;
+  margin: 0;
+  padding: 5px 15px;
+  background-color: var(--primary);
+  color: var(--indigo);
+  border-radius: 15px 15px 0 0;
+}
+.loadingWindow .titleContainer p {
+  font-size: xx-large;
+  font-weight: 400;
+}
+.loadingWindow .bodyRow{
+  padding: 15px;
+}
+.loadingWindow .bodyRow p{
+  font-size: large;
+}

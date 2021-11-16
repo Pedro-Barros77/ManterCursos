@@ -1,0 +1,143 @@
+<div class="modal fade" id="categoryModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+  aria-labelledby="categoryModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="row">
+
+          <div *ngIf="!isOnList" class="col-auto">
+            <button (click)="backToList(this.form)" class="btn btn-light backButton" type="button">
+              <i class="fas fa-arrow-left"></i>
+            </button>
+          </div>
+
+          <div class="col">
+            <h5 class="modal-title" id="categoryModalLabel">Categorias</h5>
+          </div>
+        </div>
+
+        <button (click)="resetForm(this.form); isOnList = true" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+        <ng-container *ngIf="isOnList">
+          <table id="categoryTable" class="table table-striped table-hover">
+            <thead class="table-light">
+              <tr>
+                <th class="col-auto topLeftHeader">
+                  <div class="dropdown">
+                    <button id="categoriesOptions" class="noGap" type="button" data-bs-toggle="dropdown"
+                      aria-expanded="false">
+                      <i class="fas fa-ellipsis-h fa-lg"></i>
+                    </button>
+                    <ul class="dropdown-menu slcOptions" aria-labelledby="categoriesOptions">
+                      <li>
+                        <a class="dropdown-item">Selecionar tudo</a>
+                      </li>
+                      <li>
+                        <a id="deleteSelectedAutor" class="dropdown-item disabled">Excluir selecionados</a>
+                      </li>
+                      <li>
+                        <hr class="dropdown-divider">
+                      </li>
+                      <li>
+                        <a class="dropdown-item">Cancelar seleção</a>
+                      </li>
+                    </ul>
+                  </div>
+                </th>
+                <th class="col-10">
+                  <p>Nome</p>
+                </th>
+                <th class="col-2">
+                  <p>Cursos</p>
+                </th>
+              </tr>
+            </thead>
+
+            <tbody *ngIf="CategoryService.CategoriesList && CategoryService.CategoriesList.length" class="table-light">
+
+              <tr *ngFor="let category of CategoryService.CategoriesList; index as i;">
+                <td class="leftCell">
+                  <button (click)="deleteCategory($event,category)"class="btn btn-outline-danger btnAction"><i class="fas fa-trash"></i></button>
+                </td>
+                <td>{{category.name}}</td>
+                <td>{{0}}</td>
+              </tr>
+            </tbody>
+
+            <tfoot class="table-light">
+              <tr *ngIf="!CategoryService.CategoriesList.length">
+                <td colspan="8">
+                  <h6>Nenhuma Categoria cadastrada.</h6>
+                </td>
+              </tr>
+              <tr *ngIf="CategoryService.CategoriesList && !CategoryService.CategoriesList">
+                <td colspan="8">
+                  Nenhuma Categoria com o <strong>nome</strong> informado.
+                </td>
+              </tr>
+            </tfoot>
+          </table>
+        </ng-container>
+
+        <div [ngClass]="{'d-none': isOnList}">
+          <form id="categoryForm" class="was-validated" method="post" novalidate autocomplete="off" #form="ngForm"
+            (submit)="onSubmit(form)">
+            <div class="row justify-content-center">
+
+              <div class="col">
+                <div class="text-danger"></div>
+
+                <div class="form-group">
+                  <label class="control-label">Nome</label>
+                  <input class="form-control" maxlength="50" placeholder="Nome" name="name" id="txtName" value="Nome"
+                    #name="ngModel" [(ngModel)]="CategoryService.formData.name" required
+                    [class.invalid]="name.invalid && name.touched" />
+
+                  <span class="text-danger invalid-feedback">Campo Nome obrigatório.</span>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <div id="newCategoryLoading" [ngClass]="{'d-none':!isLoading}" class="loadingWindow translate-middle">
+          <div class="row">
+            <div class="col">
+              <div class="titleContainer">
+                <p class="display-6 noGap">Manter Cursos</p>
+              </div>
+            </div>
+          </div>
+        
+          <div class="row align-items-center bodyRow">
+            <div class="col-auto">
+                <div class="spinner-border" role="status">
+                  <span class="visually-hidden">Processando...</span>
+                </div>
+            </div>
+            <div class="col noGap">
+              <p class="noGap">Processando...</p>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+      <div class="modal-footer">
+        <button (click)="backToList(this.form)" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+        <button *ngIf="isOnList" (click)="newCategory()" type="button" class="btn btn-success">Nova Categoria</button>
+
+
+        <div *ngIf="!isOnList" class="form-group">
+          <button class="btn btn-primary" form="categoryForm" type="submit" [disabled]="form.invalid">Cadastrar</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<delete-category-modal (confirmDelete)="confirmDelete()"></delete-category-modal>
+<button id="btnOpenDelete" class="d-none" data-bs-toggle="modal" data-bs-target="#deleteModal"></button>

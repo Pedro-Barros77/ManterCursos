@@ -3,7 +3,7 @@
   margin: 0;
 }
 
-.row{
+/* .row{
   background-color: rgb(240, 255, 255);
   border: 2px solid rgb(102, 156, 156);
 }
@@ -11,12 +11,11 @@
 .col{
   background-color: rgb(204, 183, 236);
   border: 2px solid rgb(137, 109, 179);
-}
+} */
 
 .backButton{
   width: 40px;
   height: auto;
-  background-color: red;
 }
 .backButton:hover{
   transition: 500ms;
@@ -29,6 +28,7 @@
 
 #titleCol{
   transform: translate(-20px,0);
+  color: var(--light);
 }
 
 hr{
@@ -36,6 +36,26 @@ hr{
   width: 100%;
 }
 
-.invalid-feedback{
+form .row{
+  margin-top: 8px;
+}
+
+form .invalid-feedback{
   font-size: smaller;
+  color: rgb(255, 118, 118);
+}
+
+form label{
+  color: var(--light);
+}
+
+form textarea {
+  resize: none;
+  overflow: visible;
+  height: 90px;
+}
+
+
+form #btnSubmit{
+  margin-top: 20px;
 }

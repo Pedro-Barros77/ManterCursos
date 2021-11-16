@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace ManterCursos_API.Models
 {
@@ -9,22 +10,23 @@ namespace ManterCursos_API.Models
         [Key]
         public int ID { get; set; }
 
-        [StringLength(50, MinimumLength = 3), Required]
+        [StringLength(50), Required]
         public string Title { get; set; }
 
-        [StringLength(100, MinimumLength = 3), Required]
+        [StringLength(200), Required]
         public string Description { get; set; }
 
-        [Required]
+        [Required, DataType(DataType.Date)]
         public DateTime StartingDate { get; set; }
 
-        [Required]
+        [Required, DataType(DataType.Date)]
         public DateTime EndingDate { get; set; }
 
         public int? StudentsPerClass { get; set; }
 
         [Required, ForeignKey("Category")]
         public int CategoryID { get; set; }
-        public Category Category { get; set; }
+        [JsonIgnore]
+        public virtual Category Category { get; set; }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace ManterCursos_API.Models
 {
@@ -11,6 +12,7 @@ namespace ManterCursos_API.Models
         [StringLength(20, MinimumLength = 3), Required]
         public string Login { get; set; }
 
+        [JsonIgnore]
         [StringLength(8, MinimumLength = 8), Required]
         public string Password { get; set; }
     }

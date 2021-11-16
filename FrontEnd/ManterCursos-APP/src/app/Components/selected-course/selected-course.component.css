@@ -1,0 +1,36 @@
+.noGap {
+  padding: 0;
+  margin: 0;
+}
+
+#selectedCourseModal .modal-content {
+  max-height: calc(100vh - 143px);
+  min-height: 300px;
+  overflow-y: auto;
+}
+
+#selectedCourseModal .modal-body .itemLine{
+  background-color: var(--light);
+  margin-top: 8px;
+  padding: 5px 10px;
+  word-wrap: break-word;
+}
+
+#selectedCourseModal .modal-body .itemLine .fieldLabel{
+  font-size: large;
+  font-weight: bold;
+  color: var(--indigo);
+}
+
+
+.backButton {
+  width: 40px;
+  height: auto;
+  color: white;
+  background-color: rgb(95, 95, 95);
+}
+.backButton:hover {
+  transition: 500ms;
+  background-color: black;
+  cursor: pointer;
+}

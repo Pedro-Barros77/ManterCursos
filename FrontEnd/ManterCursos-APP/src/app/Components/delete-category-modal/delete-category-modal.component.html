@@ -1,0 +1,41 @@
+<div class="modal fade" id="deleteModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+  aria-labelledby="deleteModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="row">
+          <div class="col">
+            <h5 class="modal-title" id="deleteModalLabel">Excluir</h5>
+          </div>
+        </div>
+
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <!-- ################## -->
+
+      <div class="modal-body">
+
+        <div class="row">
+          <div class="col">
+            <p class="display-6 noGap">Tem certeza que deseja excluir a Categoria
+              '<strong>{{CategoryService.formData.name}}</strong>'?</p>
+          </div>
+        </div>
+
+        <div class="row itemLine">
+          <div class="col">
+            <p class="noGap"><span class="fieldLabel">Cursos: </span> {{0}}</p>
+          </div>
+        </div>
+
+      </div>
+
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+        <button (click)="confirm()" type="button" class="btn btn-danger" data-bs-dismiss="modal">Sim, excluir</button>
+      </div>
+    </div>
+  </div>
+</div>
