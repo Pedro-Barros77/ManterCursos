@@ -1,0 +1,42 @@
+USE [DB_ManterCursos]
+GO
+
+/****** Object:  Table [dbo].[CourseLogs]    Script Date: 18/11/2021 13:34:05 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+/****** Script gerado pelo Entity Frameowrk ******/
+
+
+
+CREATE TABLE [dbo].[CourseLogs](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[UserID] [int] NOT NULL,
+	[CourseID] [int] NOT NULL,
+	[EventDate] [datetime2](7) NOT NULL,
+	[UpdatedFields] [nvarchar](200) NULL,
+ CONSTRAINT [PK_CourseLogs] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[CourseLogs]  WITH CHECK ADD  CONSTRAINT [FK_CourseLogs_Courses_CourseID] FOREIGN KEY([CourseID])
+REFERENCES [dbo].[Courses] ([ID])
+ON DELETE CASCADE
+GO
+
+ALTER TABLE [dbo].[CourseLogs] CHECK CONSTRAINT [FK_CourseLogs_Courses_CourseID]
+GO
+
+ALTER TABLE [dbo].[CourseLogs]  WITH CHECK ADD  CONSTRAINT [FK_CourseLogs_Users_UserID] FOREIGN KEY([UserID])
+REFERENCES [dbo].[Users] ([ID])
+ON DELETE CASCADE
+GO
+
+ALTER TABLE [dbo].[CourseLogs] CHECK CONSTRAINT [FK_CourseLogs_Users_UserID]
+GO
+

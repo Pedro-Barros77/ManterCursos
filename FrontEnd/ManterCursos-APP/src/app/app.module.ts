@@ -17,6 +17,7 @@ import { DeleteCategoryModalComponent } from './Components/delete-category-modal
 import { DatePipe } from '@angular/common';
 import { AlertModalComponent } from './Components/alert-modal/alert-modal.component';
 import { FilterModalComponent } from './Components/filter-modal/filter-modal.component';
+import { HomeComponent } from './Pages/Client/home/home.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { FilterModalComponent } from './Components/filter-modal/filter-modal.com
     DeleteModalComponent,
     DeleteCategoryModalComponent,
     AlertModalComponent,
-    FilterModalComponent
+    FilterModalComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +40,7 @@ import { FilterModalComponent } from './Components/filter-modal/filter-modal.com
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule, // required animations module
-    ToastrModule.forRoot(), // ToastrModule added
+    ToastrModule.forRoot() // ToastrModule added
   ],
   providers: [
    DatePipe

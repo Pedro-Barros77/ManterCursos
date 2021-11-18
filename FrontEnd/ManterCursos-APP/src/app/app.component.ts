@@ -9,5 +9,5 @@ import { Router } from '@angular/router';
 export class AppComponent {
   title = 'Manter Cursos';
 
-  constructor(router: Router){router.navigate(["/courses-list"]);}
+  constructor(router: Router){router.navigate(["/client-home"]);}
 }

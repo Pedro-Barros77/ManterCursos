@@ -15,10 +15,10 @@ export class CoursesService {
     this.router = router;
   }
   router: Router;
+  logData: CourseLog = new CourseLog();
 
 
   formData: Course = new Course();
-  logData: CourseLog = new CourseLog();
   readonly baseURL = 'https://localhost:44309/api/Course';
 
   CoursesList: Course[] = [];
@@ -64,13 +64,13 @@ export class CoursesService {
     switch (errorCode) {
       case 1:
         this.alertObj = Object.assign(new AlertBody(
-          'Data de Início Inválida',
+          'Data de Início Inválida - Cod_01',
           'A data de início deve ser maior ou igual a data de hoje!', []));
         break;
 
       case 2:
         this.alertObj = Object.assign(new AlertBody(
-          'Data de Término Inválida',
+          'Data de Término Inválida - Cod_02',
           'A data de término deve ser maior ou igual a data de início!', []));
         break;
 
@@ -81,20 +81,21 @@ export class CoursesService {
             'Existe um curso planejado ';
 
           this.alertObj = Object.assign(new AlertBody(
-            'Período indisponível',
+            'Período indisponível - Cod_03',
             foundText + 'dentro do período informado:', []));
 
           courses!.forEach(course => {
             this.alertObj.lineItems.push(new LineItem('Curso: ', course.title));
             this.alertObj.lineItems.push(new LineItem('Data de Início: ', new Date(course.startingDate).toLocaleDateString()));
             this.alertObj.lineItems.push(new LineItem('Data de Término: ', new Date(course.endingDate).toLocaleDateString()));
+            this.alertObj.lineItems.push(new LineItem('Essa Data end: ' + new Date(this.formData.endingDate),"data existente start: " + new Date(course.startingDate)));
             if (courses!.indexOf(course) != courses!.length - 1)
               this.alertObj.lineItems.push(new LineItem('divider', ''));
           });
         }
         else {
           this.alertObj = Object.assign(new AlertBody(
-            'Período indisponível',
+            'Período indisponível - Cod_03',
             'Existe(m) curso(s) planejado(s) no período informado.', []));
         }
         break;
@@ -102,7 +103,7 @@ export class CoursesService {
       case 4:
         if (courses && courses.length > 0) {
           this.alertObj = Object.assign(new AlertBody(
-            'Curso já cadastrado',
+            'Curso já cadastrado - Cod_04',
             'O curso informado já está cadastrado:', [
             new LineItem("Curso: ", courses![0].title),
             new LineItem("Descrição: ", courses![0].description)
@@ -110,14 +111,14 @@ export class CoursesService {
         }
         else {
           this.alertObj = Object.assign(new AlertBody(
-            'Curso já cadastrado',
+            'Curso já cadastrado - Cod_04',
             'O curso informado já está cadastrado.', []));
         }
         break;
 
         case 5:
         this.alertObj = Object.assign(new AlertBody(
-          'Curso já finalizado',
+          'Curso já finalizado - Cod_05',
           'Não é possível excluir um curso já realizado.', []));
         break;
     }

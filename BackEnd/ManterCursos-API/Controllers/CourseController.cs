@@ -83,7 +83,7 @@ namespace ManterCursos_API.Controllers
 
                 Course duplicate = CheckDuplicates(course);
 
-                if (duplicate != default)
+                if (duplicate != default && duplicate.ID != 0 && duplicate.ID != course.ID)
                 {
                     return BadRequest(new { message = "Curso já cadastrado.", errorCode = 4 });
                 }
@@ -138,7 +138,7 @@ namespace ManterCursos_API.Controllers
 
                 Course duplicate = CheckDuplicates(course);
 
-                if (duplicate != default)
+                if (duplicate != default && duplicate.ID != 0)
                 {
                     return BadRequest(new { message = "Curso já cadastrado.", errorCode = 4 });
                 }

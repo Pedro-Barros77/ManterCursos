@@ -108,3 +108,9 @@
   opacity: 100;
   transition: 300ms;
 }
+
+#courseTable tbody tr:hover td .btn-outline-secondary{
+  color: rgb(199, 199, 199);
+  border-color: rgb(199, 199, 199);
+
+}

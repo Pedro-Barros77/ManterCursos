@@ -80,7 +80,7 @@ export class CoursesNewEditComponent implements OnInit {
         (err: any) => {
           console.log(err);
 
-          if(err.error.errorCode){
+          if (err.error.errorCode) {
             this.CourseService.throwError(err.error.errorCode);
           }
         }
@@ -115,27 +115,42 @@ export class CoursesNewEditComponent implements OnInit {
       }
       updatedFields.replace(';', '');
 
+      if(updatedFields.length > 0){
+        this.CourseService.putCourse().subscribe(
+          (response: any) => {
 
-      this.CourseService.putCourse().subscribe(
-        (response: any) => {
-          this.CourseService.logData.courseID = response.id;
-          this.CourseService.logData.userID = 1;
-          this.CourseService.logData.eventDate = new Date();
-          this.CourseService.logData.updatedFields = updatedFields;
+            this.CourseService.logData.courseID = response.id;
+            this.CourseService.logData.userID = 1;
+            this.CourseService.logData.eventDate = new Date();
+            this.CourseService.logData.updatedFields = updatedFields;
 
-          console.log(this.CourseService.logData);
+            console.log(this.CourseService.logData);
 
-          this.CourseService.postLog().subscribe(res => console.log(res), error => console.log(error));
+            this.CourseService.postLog().subscribe(res => console.log(res), error => console.log(error));
 
 
-          this.resetForm(form);
-          console.log(response);
-          this.toastr.success('Atualização realizada com sucesso!', 'Manter Cursos');
 
-          this.router.navigate(["/courses-list"]);
-        },
-        err => { console.log(err); }
-      );
+            this.resetForm(form);
+            console.log(response);
+            this.toastr.success('Atualização realizada com sucesso!', 'Manter Cursos');
+
+            this.router.navigate(["/courses-list"]);
+          },
+          (err: any) => {
+            console.log(err);
+
+            if (err.error.errorCode) {
+              this.CourseService.throwError(err.error.errorCode);
+            }
+          }
+        );
+      }
+      else{
+        this.toastr.warning('Nenhum campo foi alterado', 'Manter Cursos');
+      }
+
+
+
     }
   }
 

@@ -81,7 +81,7 @@
         <div class="col col-12 col-md-4 col-lg-2">
           <div class="form-group">
             <label class="control-label">Alunos por Turma</label>
-            <input type="number" class="form-control" placeholder="0 (opcional)" name="studentsPerClass"
+            <input min="0" max="200" type="number" class="form-control" placeholder="0 (opcional)" name="studentsPerClass"
               id="txtStudentsPerClass" value="Alunos p/ Turma" #studentsPerClass="ngModel"
               [(ngModel)]="CourseService.formData.studentsPerClass" />
           </div>

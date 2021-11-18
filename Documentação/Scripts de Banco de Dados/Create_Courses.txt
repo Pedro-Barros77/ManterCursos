@@ -1,0 +1,38 @@
+/****** Script gerado pelo Entity Frameowrk ******/
+
+
+
+USE [DB_ManterCursos]
+GO
+
+/****** Object:  Table [dbo].[Courses]    Script Date: 18/11/2021 13:28:37 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Courses](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[Title] [nvarchar](50) NOT NULL,
+	[Description] [nvarchar](200) NOT NULL,
+	[StartingDate] [datetime2](7) NOT NULL,
+	[EndingDate] [datetime2](7) NOT NULL,
+	[StudentsPerClass] [int] NULL,
+	[CategoryID] [int] NOT NULL,
+ CONSTRAINT [PK_Courses] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[Courses]  WITH CHECK ADD  CONSTRAINT [FK_Courses_Categories_CategoryID] FOREIGN KEY([CategoryID])
+REFERENCES [dbo].[Categories] ([ID])
+ON DELETE CASCADE
+GO
+
+ALTER TABLE [dbo].[Courses] CHECK CONSTRAINT [FK_Courses_Categories_CategoryID]
+GO
+
+

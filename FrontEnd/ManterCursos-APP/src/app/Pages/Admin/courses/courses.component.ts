@@ -67,7 +67,7 @@ export class CoursesComponent implements OnInit {
 
   formatDescription(description: string): string {
     if (description.length > 30) {
-      return description.substring(0, 25) + '...' + description.substring(description.length - 6);
+      return description.substring(0, 30) + '...';
     }
     else {
       return description;
