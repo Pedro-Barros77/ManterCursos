@@ -55,6 +55,19 @@
   border-right: 2px solid var(--void);
 }
 
+#categoryTable tbody tr td .btnAction{
+  margin: 0;
+  padding: 0;
+  width: 25px;
+  height: 25px;
+  opacity: 0;
+  transition: 150ms;
+}
+#categoryTable tbody tr:hover td .btnAction{
+  opacity: 100;
+  transition: 300ms;
+}
+
 .loadingWindow {
   background-color: var(--light);
   position: absolute;

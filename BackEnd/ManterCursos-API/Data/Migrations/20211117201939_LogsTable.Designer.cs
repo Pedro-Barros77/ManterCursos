@@ -4,14 +4,16 @@ using ManterCursos_API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ManterCursos_API.Data.Migrations
 {
     [DbContext(typeof(ManterCursosContext))]
-    partial class ManterCursosContextModelSnapshot : ModelSnapshot
+    [Migration("20211117201939_LogsTable")]
+    partial class LogsTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

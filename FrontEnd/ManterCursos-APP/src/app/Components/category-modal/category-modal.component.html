@@ -16,7 +16,7 @@
           </div>
         </div>
 
-        <button (click)="resetForm(this.form); isOnList = true" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button (click)="backToList(this.form); isOnList = true" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
 
@@ -110,7 +110,7 @@
               </div>
             </div>
           </div>
-        
+
           <div class="row align-items-center bodyRow">
             <div class="col-auto">
                 <div class="spinner-border" role="status">
@@ -140,4 +140,4 @@
 </div>
 
 <delete-category-modal (confirmDelete)="confirmDelete()"></delete-category-modal>
-<button id="btnOpenDelete" class="d-none" data-bs-toggle="modal" data-bs-target="#deleteModal"></button>
+<button id="btnOpenDeleteCategory" class="d-none" data-bs-toggle="modal" data-bs-target="#deleteCategoryModal"></button>

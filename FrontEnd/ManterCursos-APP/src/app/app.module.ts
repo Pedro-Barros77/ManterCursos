@@ -14,6 +14,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SelectedCourseComponent } from './Components/selected-course/selected-course.component';
 import { DeleteModalComponent } from './Components/delete-modal/delete-modal.component';
 import { DeleteCategoryModalComponent } from './Components/delete-category-modal/delete-category-modal.component';
+import { DatePipe } from '@angular/common';
+import { AlertModalComponent } from './Components/alert-modal/alert-modal.component';
+import { FilterModalComponent } from './Components/filter-modal/filter-modal.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +27,9 @@ import { DeleteCategoryModalComponent } from './Components/delete-category-modal
     CategoryModalComponent,
     SelectedCourseComponent,
     DeleteModalComponent,
-    DeleteCategoryModalComponent
+    DeleteCategoryModalComponent,
+    AlertModalComponent,
+    FilterModalComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +40,9 @@ import { DeleteCategoryModalComponent } from './Components/delete-category-modal
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot(), // ToastrModule added
   ],
-  providers: [],
+  providers: [
+   DatePipe
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

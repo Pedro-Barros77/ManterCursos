@@ -27,32 +27,35 @@
         </div>
 
         <div class="form-inline">
-          <div class="row">
+          <div class="row align-items-center py-2">
 
             <div class="col col-sm-12 col-md-7 col-lg-4">
-              <div class="form-group mb-2">
-                <input type="text" class="form-control mr-2" placeholder="Titulo">
-                <!-- [(ngModel)]="service.SearchFilter"> -->
+              <div class="form-group">
+                <input name="name" type="text" class="form-control mr-2" placeholder="Titulo"
+                [(ngModel)]="CourseService.SearchFilter">
               </div>
             </div>
 
             <div class="col col-sm-4 col-md-3 col-lg-2">
-              <div class="btn-group" style="width: 100%;">
-                <button type="button" class="btn btn-light btnWhite">
-                  <i class="fas fa-sort-alpha-down"></i>
-                  Ordenar
+              <div class="btn-group">
+                <button (click)="CourseService.ReOrder()" id="btnOrder" type="button" class="btn btn-light btnWhite">
+                  <i id="orderIcon" class="fas fa-sort-alpha-down"></i>
+                  <span id="orderLabel"> Titulo</span>
                 </button>
                 <button id="dpdOrder" type="button" class="btn btn-light btnWhite dropdown-toggle dropdown-toggle-split"
                   data-bs-toggle="dropdown" aria-expanded="false" data-bs-reference="parent">
                   <span class="visually-hidden">Toggle Dropdown</span>
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dpdOrder">
-                  <li><a class="dropdown-item">Alfabética</a></li>
-                  <li><a class="dropdown-item">Crescente/Decrescente</a></li>
+                  <li><a class="dropdown-item" (click)="CourseService.setOrder(true)">Alfabética</a></li>
+                  <li><a class="dropdown-item" (click)="CourseService.setOrder(false)">Data</a></li>
                 </ul>
               </div>
             </div>
 
+            <div id="settingsCol" class="col col-sm-12 col-md-7 col-lg-4">
+              <button (click)="trigger = trigger == 1 ? 2 : 1;" class=""><i class="fas fa-cog fa-2x"></i></button>
+            </div>
           </div>
         </div>
 
@@ -84,8 +87,11 @@
               <th class="col">
                 <p>Titulo</p>
               </th>
-              <th class="col-4 d-none d-md-table-cell">
+              <th class="col-3 d-none d-md-table-cell">
                 <p>Descrição</p>
+              </th>
+              <th class="col-2">
+                <p>Categoria</p>
               </th>
               <th class="col-2">
                 <p>Início</p>
@@ -98,12 +104,15 @@
 
           <tbody *ngIf="CourseService.CoursesList && CourseService.CoursesList.length" class="table-light">
 
-            <tr *ngFor="let course of CourseService.CoursesList; index as i;" (click)="openCourse($event,course)">
+            <tr *ngFor="let course of CourseService.filteredCourses; index as i;" (click)="openCourse($event,course)">
               <td class="leftCell">
-                <button (click)="deleteCourse($event,course)"class="btn btn-outline-danger btnAction"><i class="fas fa-trash"></i></button>
+                <button (click)="deleteCourse($event,course)" class="btn btnAction"
+                [disabled]="isOver(course)" [ngClass]="{'btn-outline-danger':!isOver(course), 'btn-outline-secondary':isOver(course)}"><i
+                    class="fas fa-trash"></i></button>
               </td>
               <td>{{course.title}}</td>
               <td class="d-none d-md-table-cell">{{formatDescription(course.description)}}</td>
+              <td>{{getCategory(course.categoryID).name}}</td>
               <td>{{course.startingDate | date: "dd/MM/yyy"}}</td>
               <td>{{course.endingDate | date: "dd/MM/yyy"}}</td>
             </tr>
@@ -115,7 +124,7 @@
                 <h6>Nenhum Curso cadastrado.</h6>
               </td>
             </tr>
-            <tr *ngIf="CourseService.CoursesList && !CourseService.CoursesList">
+            <tr *ngIf="CourseService.CoursesList && !CourseService.filteredCourses">
               <td colspan="8">
                 Nenhum Curso com o <strong>titulo</strong> informado.
               </td>
@@ -130,5 +139,9 @@
 <side-menu></side-menu>
 <selected-course></selected-course>
 <delete-modal (confirmDelete)="confirmDelete()"></delete-modal>
+<filter-modal *ngIf="trigger" [dataObj]="trigger"></filter-modal>
+<ng-container *ngIf="CourseService.alertObj.title.length">
+  <alert-modal (closed)="CourseService.resetAlert()" [dataObj]="CourseService.alertObj"></alert-modal>
+</ng-container>
 <button id="btnOpenDetails" class="d-none" data-bs-toggle="modal" data-bs-target="#selectedCourseModal"></button>
 <button id="btnOpenDelete" class="d-none" data-bs-toggle="modal" data-bs-target="#deleteModal"></button>

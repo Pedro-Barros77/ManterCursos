@@ -25,6 +25,38 @@
   width: 150px;
 }
 
+.btnWhite{
+  background-color: white;
+  border: 1px solid gray;
+}
+.btnWhite:hover{
+  background-color: rgb(238, 238, 238);
+  border: 1px solid black;
+}
+
+#btnOrder{
+  width: 150px;
+}
+
+#dpdOrder{
+  width: 20%;
+}
+
+#settingsCol{
+  margin-left: 45px;
+}
+#settingsCol button{
+  background-color: transparent;
+  color: rgb(194, 194, 194);
+  border: none;
+  transition: 250ms;
+}
+#settingsCol button:hover{
+  color: var(--light);
+  transform: rotate(45deg);
+  transition: 250ms;
+}
+
 #courseTable thead .dropdown #coursesOptions {
   font-size: larger;
   width: auto;

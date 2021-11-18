@@ -9,6 +9,10 @@
   overflow-y: auto;
 }
 
+#selectedCourseModal .modal-header{
+
+}
+
 #selectedCourseModal .modal-body .itemLine{
   background-color: var(--light);
   margin-top: 8px;
@@ -16,10 +20,23 @@
   word-wrap: break-word;
 }
 
+#selectedCourseModal .modal-body .spanLine{
+  background-color: var(--primary);
+  margin-top: 8px;
+  padding: 5px 10px;
+  word-wrap: break-word;
+  color: var(--light);
+}
+
 #selectedCourseModal .modal-body .itemLine .fieldLabel{
   font-size: large;
   font-weight: bold;
   color: var(--indigo);
+}
+
+#selectedCourseModal .modal-body .spanLine .fieldLabel{
+  font-size: large;
+  font-weight: bold;
 }
 
 

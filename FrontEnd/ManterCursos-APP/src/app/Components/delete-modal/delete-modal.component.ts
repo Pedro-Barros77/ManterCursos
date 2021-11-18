@@ -35,8 +35,12 @@ export class DeleteModalComponent implements OnInit {
   getCategory(id: number): Category {
     return this.CategoryService.CategoriesList.find(cat => cat.id == id)!;
   }
-  
+
   confirm() {
     this.confirmDelete.emit('');
+  }
+
+  cancel(){
+    this.CourseService.formData = new Course();
   }
 }

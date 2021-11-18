@@ -14,5 +14,6 @@ namespace ManterCursos_API.Data
         public DbSet<Course> Courses { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<CourseLog> CourseLogs { get; set; }
     }
 }

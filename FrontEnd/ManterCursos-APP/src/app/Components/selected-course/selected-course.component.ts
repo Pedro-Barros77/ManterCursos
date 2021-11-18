@@ -1,3 +1,4 @@
+import { CourseLog } from './../../Shared/CourseLog.model';
 import { CoursesService } from './../../Shared/courses.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { CategoriesService } from 'src/app/Shared/categories.service';
@@ -28,12 +29,15 @@ export class SelectedCourseComponent implements OnInit {
   isOnList: boolean = true;
   isLoading: boolean = false;
 
+  logsList: CourseLog[] = [];
+
   ngOnInit(): void {
 
   }
 
   backToList(){
     this.isOnList = true;
+    this.CourseService.formData = new Course();
     document.getElementById("categoryModalLabel")!.innerText = "Categorias";
   }
 
@@ -45,5 +49,34 @@ export class SelectedCourseComponent implements OnInit {
     else{
       return new Category();
     }
+  }
+
+  getLogs(){
+    this.CourseService.getLogs(this.CourseService.formData.id)
+    .subscribe(
+      (res:any) =>{
+        console.log(res);
+        this.logsList = res as CourseLog[];
+      },
+      error => console.log(error)
+    );
+  }
+
+  getLogFields(fields: string){
+    let fieldsArray: string[] = Array.from(fields);
+    let newString = '';
+    for (let i = 0; i < fieldsArray.length; i++) {
+      const letter = fieldsArray[i];
+
+      if(letter == ';'){
+        if(i > 0){
+          newString += ', ';
+        }
+      }
+      else{
+        newString += letter;
+      }
+    }
+    return newString;
   }
 }

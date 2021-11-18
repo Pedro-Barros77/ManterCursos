@@ -12,7 +12,7 @@
           </div>
 
           <div id="titleCol" class="col col-lg-8 text-center me-auto ms-auto">
-            <p class="display-4 noGap">Novo Curso</p>
+            <p id="newCourseLabel" class="display-4 noGap">Novo Curso</p>
           </div>
         </div>
       </div>
@@ -32,7 +32,8 @@
           <div class="form-group">
             <label class="control-label">Titulo</label>
             <input class="form-control" maxlength="50" placeholder="Titulo" name="title" id="txtTitle" value="Titulo"
-              #title="ngModel" [(ngModel)]="CourseService.formData.title" />
+              #title="ngModel" [(ngModel)]="CourseService.formData.title" required
+              [class.invalid]="title.invalid && title.touched">
           </div>
           <div class="invalid-feedback">Campo Titulo obrigatório!</div>
         </div>
@@ -41,11 +42,12 @@
 
           <div class="form-group">
             <label class="control-label">Categoria</label>
-            <select class="form-select" aria-label="dpdCategory" name="category" #category="ngModel"
-              [(ngModel)]="CourseService.formData.categoryID" required
-              [class.invalid]="category.invalid && category.touched">
-              <option value="" selected>Selecionar</option>
-              <option *ngFor="let category of CategoryService.CategoriesList" value="{{category.id}}">{{category.name}}
+            <select id="dpdCategory" class="form-select" aria-label="dpdCategory" name="categoryID"
+              #categoryID="ngModel" [(ngModel)]="CourseService.formData.categoryID" required
+              [class.invalid]="categoryID.invalid && categoryID.touched">
+              <option *ngIf="CourseService.formData.id == 0" value="">Selecionar</option>
+              <option *ngFor="let category of CategoryService.CategoriesList" id="cat-{{category.id}}"
+                [value]="category.id">{{category.name}}
               </option>
             </select>
             <div class="invalid-feedback">Campo Categoria obrigatório!</div>
@@ -59,8 +61,8 @@
           <div class="form-group">
             <label class="control-label">Data de Início</label>
             <input type="date" class="form-control" placeholder="Início" name="startingDate" id="txtStartingDate"
-              value="Início" #startingDate="ngModel" [(ngModel)]="CourseService.formData.startingDate" required
-              [class.invalid]="startingDate.invalid && startingDate.touched" />
+              value="Início" #startingDate="ngModel" [ngModel]="CourseService.formData.startingDate | date:'yyyy-MM-dd'"
+              required [class.invalid]="startingDate.invalid && startingDate.touched" />
             <div class="invalid-feedback">Campo Data de Início obrigatório!</div>
           </div>
         </div>
@@ -70,9 +72,9 @@
           <div class="form-group">
             <label class="control-label">Data de Término</label>
             <input type="date" class="form-control" placeholder="Fim" name="endingDate" id="txtendingDate" value="Fim"
-              #endingDate="ngModel" [(ngModel)]="CourseService.formData.endingDate" required
+              #endingDate="ngModel" [ngModel]="CourseService.formData.endingDate | date:'yyyy-MM-dd'" required
               [class.invalid]="endingDate.invalid && endingDate.touched" />
-              <div class="invalid-feedback">Campo Data Final obrigatório!</div>
+            <div class="invalid-feedback">Campo Data Final obrigatório!</div>
           </div>
         </div>
 
@@ -94,7 +96,7 @@
               id="txtDescription" value="Descrição" #description="ngModel"
               [(ngModel)]="CourseService.formData.description" required
               [class.invalid]="description.invalid && description.touched"></textarea>
-              <div class="invalid-feedback">Campo Descrição obrigatório!</div>
+            <div class="invalid-feedback">Campo Descrição obrigatório!</div>
           </div>
         </div>
       </div>
@@ -105,7 +107,7 @@
             <div class="col col-12">
               <div class="form-group">
                 <button id="btnSubmit" class="btn btn-primary" type="submit"
-                  [disabled]="form.invalid">Cadastrar</button>
+                  [disabled]="form.invalid">Adicionar</button>
               </div>
             </div>
           </div>
@@ -115,3 +117,7 @@
 
   </div>
 </div>
+
+<ng-container *ngIf="CourseService.alertObj.title.length">
+  <alert-modal (closed)="CourseService.resetAlert()" [dataObj]="CourseService.alertObj"></alert-modal>
+</ng-container>

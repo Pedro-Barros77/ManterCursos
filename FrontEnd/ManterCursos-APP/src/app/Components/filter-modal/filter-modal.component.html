@@ -1,0 +1,65 @@
+<button id="btnFilter" class="d-none" data-bs-toggle="modal" data-bs-target="#filterModal"></button>
+
+<div class="modal fade" id="filterModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+  aria-labelledby="filterModalTitle" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="row">
+          <div class="col">
+            <h5 class="modal-title" id="filterModalTitle">Filtro Avançado</h5>
+          </div>
+        </div>
+
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div id="alertBody" class="modal-body">
+
+        <form id="filterForm" class="was-validated" method="post" novalidate autocomplete="off" #form="ngForm"
+          (submit)="onSubmit(form)">
+
+          <div class="row justify-content-center">
+            <div class="col-6">
+
+              <div class="form-group">
+                <label class="control-label">Data de Início</label>
+                <input type="date" class="form-control" placeholder="Início" name="startingFilter" id="txtStartingDate"
+                  #startingFilter="ngModel" [ngModel]="startingDate" />
+              </div>
+            </div>
+
+            <div class="col-6">
+
+              <div class="form-group">
+                <label class="control-label">Data de Término</label>
+                <input type="date" class="form-control" placeholder="Fim" name="endingFilter" id="txtendingDate"
+                  #endingFilter="ngModel" [ngModel]="endingDate" />
+              </div>
+            </div>
+          </div>
+        </form>
+
+      </div>
+      <div class="modal-footer p-0">
+        <div class="row justify-content-end align-items-center">
+
+          <div class="col-auto px-1">
+            <button (click)="clear(form)" type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Limpar</button>
+          </div>
+
+          <div class="col-auto p-1">
+            <div class="form-group">
+              <button form="filterForm" id="btnSubmit" class="btn btn-primary" type="submit">Filtrar</button>
+            </div>
+          </div>
+
+          <div class="col-auto px-1">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

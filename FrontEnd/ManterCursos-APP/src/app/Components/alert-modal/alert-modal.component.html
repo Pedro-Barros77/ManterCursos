@@ -1,0 +1,30 @@
+<button id="btnAlert" class="d-none" data-bs-toggle="modal" data-bs-target="#alertModal"></button>
+
+<div class="modal fade" id="alertModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="alertTitle" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="row">
+          <div class="col">
+            <h5 class="modal-title" id="alertTitle"></h5>
+          </div>
+        </div>
+
+        <button (click)="closed.emit()" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div id="alertBody" class="modal-body">
+
+        <div class="row">
+          <div class="col">
+            <p id="alertSubTitle" class="display-6 noGap"></p>
+          </div>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button (click)="closed.emit()" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>

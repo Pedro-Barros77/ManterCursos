@@ -3,25 +3,25 @@
   margin: 0;
 }
 
-#deleteModal .modal-content {
+#deleteCategoryModal .modal-content {
   max-height: calc(100vh - 143px);
   min-height: 300px;
   overflow-y: auto;
 }
 
-#deleteModal .modal-body .itemLine{
+#deleteCategoryModal .modal-body .itemLine{
   background-color: var(--light);
   margin-top: 8px;
   padding: 5px 10px;
 }
 
-#deleteModal .modal-body .itemLine .fieldLabel{
+#deleteCategoryModal .modal-body .itemLine .fieldLabel{
   font-size: large;
   font-weight: bold;
   color: var(--indigo);
 }
 
-#deleteModal .modal-body .display-6{
+#deleteCategoryModal .modal-body .display-6{
   font-size: larger;
   font-weight: 400;
 }

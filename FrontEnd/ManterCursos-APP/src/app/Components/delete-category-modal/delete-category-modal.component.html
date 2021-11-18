@@ -1,15 +1,15 @@
-<div class="modal fade" id="deleteModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-  aria-labelledby="deleteModalLabel" aria-hidden="true">
+<div class="modal fade" id="deleteCategoryModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+  aria-labelledby="deleteCategoryModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <div class="row">
           <div class="col">
-            <h5 class="modal-title" id="deleteModalLabel">Excluir</h5>
+            <h5 class="modal-title" id="deleteCategoryModalLabel">Excluir</h5>
           </div>
         </div>
 
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button (click)="cancel()" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
 
       <!-- ################## -->
@@ -33,7 +33,7 @@
 
 
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+        <button (click)="cancel()" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
         <button (click)="confirm()" type="button" class="btn btn-danger" data-bs-dismiss="modal">Sim, excluir</button>
       </div>
     </div>

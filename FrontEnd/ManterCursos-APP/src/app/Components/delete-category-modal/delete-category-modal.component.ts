@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { CategoriesService } from 'src/app/Shared/categories.service';
+import { Category } from 'src/app/Shared/Category.model';
 
 @Component({
   selector: 'delete-category-modal',
@@ -28,5 +29,9 @@ export class DeleteCategoryModalComponent implements OnInit {
 
   confirm() {
     this.confirmDelete.emit('');
+  }
+
+  cancel(){
+    this.CategoryService.formData = new Category();
   }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
@@ -28,5 +29,7 @@ namespace ManterCursos_API.Models
         public int CategoryID { get; set; }
         [JsonIgnore]
         public virtual Category Category { get; set; }
+
+        public virtual ICollection<CourseLog> Logs { get; set; }
     }
 }

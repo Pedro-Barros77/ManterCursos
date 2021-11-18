@@ -38,7 +38,7 @@ export class CategoryModalComponent implements OnInit {
 
         this.isLoading = false;
         this.isOnList = true;
-        this.toastr.success('Manter Cursos', 'Cadastro realizado com sucesso!');
+        this.toastr.success('Cadastro realizado com sucesso!', 'Manter Cursos');
 
         this.resetForm(form);
         console.log(response);
@@ -51,8 +51,8 @@ export class CategoryModalComponent implements OnInit {
 
   deleteCategory(event:Event, category: Category){
     event.stopPropagation();
-    this.CategoryService.formData = category;
-    (<HTMLButtonElement>document.getElementById("btnOpenDelete")!).click();
+    this.CategoryService.formData = Object.assign({}, category);
+    (<HTMLButtonElement>document.getElementById("btnOpenDeleteCategory")!).click();
   }
 
   confirmDelete(){
@@ -60,6 +60,7 @@ export class CategoryModalComponent implements OnInit {
       res =>{
         console.log(res);
         this.CategoryService.refreshCategories();
+        this.toastr.success('Categoria excluída com sucesso!', 'Manter Cursos');
       },
       err =>{
         console.log(err);
@@ -74,6 +75,7 @@ export class CategoryModalComponent implements OnInit {
 
   backToList(form: NgForm){
     this.resetForm(form);
+    this.CategoryService.formData = new Category();
     this.isOnList = true;
     document.getElementById("categoryModalLabel")!.innerText = "Categorias";
   }

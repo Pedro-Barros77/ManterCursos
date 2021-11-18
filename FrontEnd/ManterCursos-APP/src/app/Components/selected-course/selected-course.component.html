@@ -2,52 +2,131 @@
   aria-labelledby="selectedCourseModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-scrollable modal-lg">
     <div class="modal-content">
-      <div class="modal-header">
+      <div class="modal-header p-0">
         <div class="row">
           <div class="col">
-            <h5 class="modal-title" id="selectedCourseModalLabel">Detalhamento</h5>
+            <h5 class="modal-title" id="selectedCourseModalLabel">
+              <ul class="nav nav-tabs" id="detailsTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link active" id="detalhamento-tab" data-bs-toggle="tab"
+                    data-bs-target="#detalhamento" type="button" role="tab" aria-controls="detalhamento"
+                    aria-selected="true">Detalhamento</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button (click)="getLogs()" class="nav-link" id="historico-tab" data-bs-toggle="tab" data-bs-target="#historico"
+                    type="button" role="tab" aria-controls="historico" aria-selected="false">Histórico</button>
+                </li>
+              </ul>
+            </h5>
           </div>
         </div>
 
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button (click)="backToList()" type="button" class="btn-close m-2" data-bs-dismiss="modal"
+          aria-label="Close"></button>
       </div>
       <div class="modal-body">
 
-        <div class="row itemLine">
-          <div class="col noGap">
-            <p class="noGap"><span class="fieldLabel">Titulo: </span> {{CourseService.formData.title}}</p>
-          </div>
-        </div>
+        <div class="tab-content" id="detailsTabContent">
+          <div class="tab-pane fade show active" id="detalhamento" role="tabpanel" aria-labelledby="detalhamento-tab">
 
-        <div class="row itemLine">
-          <div class="col noGap">
-            <p class="noGap"><span class="fieldLabel">Data de Início: </span> {{CourseService.formData.startingDate | date: 'dd/MM/yyy'}}</p>
-          </div>
-          <div class="col noGap">
-            <p class="noGap"><span class="fieldLabel">Data de Término: </span> {{CourseService.formData.endingDate | date: 'dd/MM/yyy'}}</p>
-          </div>
-        </div>
+            <div class="row itemLine">
+              <div class="col noGap">
+                <p class="noGap"><span class="fieldLabel">Titulo: </span> {{CourseService.formData.title}}</p>
+              </div>
+            </div>
 
-        <div class="row itemLine">
-          <div class="col noGap">
-            <p class="noGap"><span class="fieldLabel">Categoria: </span> {{getCategory(CourseService.formData.categoryID).name}}</p>
-          </div>
-          <div class="col noGap">
-            <p class="noGap"><span class="fieldLabel">Alunos por Turma: </span> {{CourseService.formData.studentsPerClass ? CourseService.formData.studentsPerClass : "Não definido"}}</p>
-          </div>
-        </div>
+            <div class="row itemLine">
+              <div class="col noGap">
+                <p class="noGap"><span class="fieldLabel">Data de Início: </span> {{CourseService.formData.startingDate
+                  | date: 'dd/MM/yyy'}}</p>
+              </div>
+              <div class="col noGap">
+                <p class="noGap"><span class="fieldLabel">Data de Término: </span> {{CourseService.formData.endingDate |
+                  date: 'dd/MM/yyy'}}</p>
+              </div>
+            </div>
 
-        <div class="row itemLine">
-          <div class="col noGap">
-            <p class="noGap"><span class="fieldLabel">Descrição: </span> {{CourseService.formData.description}}</p>
+            <div class="row itemLine">
+              <div class="col noGap">
+                <p class="noGap"><span class="fieldLabel">Categoria: </span>
+                  {{getCategory(CourseService.formData.categoryID).name}}</p>
+              </div>
+              <div class="col noGap">
+                <p class="noGap"><span class="fieldLabel">Alunos por Turma: </span>
+                  {{CourseService.formData.studentsPerClass ? CourseService.formData.studentsPerClass : "Não definido"}}
+                </p>
+              </div>
+            </div>
+
+            <div class="row itemLine">
+              <div class="col noGap">
+                <p class="noGap"><span class="fieldLabel">Descrição: </span> {{CourseService.formData.description}}</p>
+              </div>
+            </div>
+
+          </div>
+
+
+
+
+          <div class="tab-pane fade" id="historico" role="tabpanel" aria-labelledby="historico-tab">
+
+            <div *ngFor="let log of logsList; index as i">
+
+              <ng-container *ngIf="log.updatedFields == 'initial'; else notFirst">
+                <div class="row spanLine">
+                  <div class="col noGap">
+                    <p class="noGap"><span class="fieldLabel">Data de Criação: </span> {{log.eventDate |
+                      date:'dd/MM/yyy'}}</p>
+                  </div>
+                </div>
+
+                <div class="row spanLine">
+                  <div class="col noGap">
+                    <p class="noGap"><span class="fieldLabel">Usuário Responsável: </span> {{'Pedro Henrique'}}</p>
+                  </div>
+                </div>
+              </ng-container>
+
+              <ng-template #notFirst>
+
+                <div class="row justify-content-center">
+                  <div class="col-8">
+                    <hr>
+                  </div>
+                </div>
+
+                <div class="row itemLine">
+                  <div class="col noGap">
+                    <p class="noGap"><span class="fieldLabel">Data da Alteração: </span> {{log.eventDate |
+                      date:'dd/MM/yyy'}}</p>
+                  </div>
+                </div>
+
+                <div class="row itemLine">
+                  <div class="col noGap">
+                    <p class="noGap"><span class="fieldLabel">Usuário Responsável: </span> {{'Pedro Henrique'}}</p>
+                  </div>
+                </div>
+
+                <div class="row itemLine">
+                  <div class="col noGap">
+                    <p class="noGap"><span class="fieldLabel">Campos modificados: </span> {{getLogFields(log.updatedFields)}}</p>
+                  </div>
+                </div>
+              </ng-template>
+
+            </div>
+
           </div>
         </div>
-        
 
       </div>
       <div class="modal-footer">
         <button (click)="backToList()" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-        <button *ngIf="isOnList" type="button" class="btn btn-success">Editar Curso</button>
+        <button *ngIf="isOnList" data-bs-dismiss="modal" routerLink="/courses-NewEdit" type="button"
+          class="btn btn-success">
+          <i class="fas fa-edit fa-lg"></i> Editar</button>
       </div>
     </div>
   </div>
